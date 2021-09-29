@@ -62,6 +62,7 @@ type Status struct {
 	BatteryDate                 string
 	NominalInputVoltage         float64
 	NominalBatteryVoltage       float64
+	OutputPower                 float64
 	NominalPower                int
 	Firmware                    string
 	EndAPC                      time.Time
@@ -153,6 +154,7 @@ const (
 	keyBattDate      = "BATTDATE"
 	keyNomInV        = "NOMINV"
 	keyNomBattV      = "NOMBATTV"
+	keyOutPower      = "WATTS"
 	keyNomPower      = "NOMPOWER"
 	keyFirmware      = "FIRMWARE"
 	keyEndAPC        = "END APC"
@@ -232,6 +234,8 @@ func (s *Status) parseKVFloat(k string, v string) (bool, error) {
 		s.NominalInputVoltage, err = parse()
 	case keyNomBattV:
 		s.NominalBatteryVoltage, err = parse()
+	case keyOutPower:
+		s.OutputPower, err = parse()
 	case keyITemp:
 		s.InternalTemp, err = parse()
 	case keyOutV:
